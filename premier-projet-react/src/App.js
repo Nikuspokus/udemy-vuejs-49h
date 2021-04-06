@@ -15,6 +15,7 @@ class App extends Component {
           pariatur..
         </p>
       </div>
+      // React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'React App'))
     );
   }
 }
