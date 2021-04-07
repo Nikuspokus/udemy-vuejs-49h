@@ -6,10 +6,12 @@ class App extends Component {
     return (
       <div className="App">
         <h1>React App</h1>
+        <a href="https://www.google.fr/" target="blank">test lien</a>
       </div>
-      // React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'React App'))
     );
   }
 }
 
 export default App;
+
+ 
