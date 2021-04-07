@@ -1,17 +1,12 @@
-import React from 'react'
+import React, { Fragment } from "react";
 
-// const Membre = (props) => {
-//   const name = props.nom
-// console.log(props);
-//   return (
-//    <h2>Membre de ma famille : {name.toUpperCase()}</h2>
-//    )
-// }
-const Membre = ({nom}) => {
-console.log(nom);
+const Membre = ({ nom, children }) => {
   return (
-   <h2>Membre de ma famille : {nom.toUpperCase()}</h2>
-   )
-}
+    <Fragment>
+      <h2>Membre de ma famille : {nom.toUpperCase()}</h2>
+      {children ? <p>{children}</p> : <Fragment />}
+    </Fragment>
+  );
+};
 
-export default Membre
+export default Membre;
