@@ -50,9 +50,12 @@ class App extends Component {
   };
 
   handleChange2 = (event) => {
+    // 1 - on copie notre state
     const famille = { ...this.state.famille };
+    // 2 - on fait no modification
     const nom = event.target.value;
     famille.membre2.nom = nom;
+    // 3 - on met a jour notre state avec nos modifications
     this.setState({ famille });
   };
 
@@ -74,10 +77,11 @@ class App extends Component {
     let description = null
 
     if (isShow) {
-      description = <strong>Je suis un garçon. </strong>
+      description = <strong>Je suis un garçon </strong>
     } 
-    // Object.keys permet de trasformer en tableu de clé
-    // pour boucler autour d'un tableau le plus simple est de faire un "map"
+    // Object.keys permet de transformer notre objet en tableu de clé - methode la plus claire
+    // pour afficher ma liste on utilise .map pour 
+    // boucler autour d'un tableau le plus simple est de faire un "map"
     const liste = Object.keys(famille)
     .map(membre => (
       <Membre 
