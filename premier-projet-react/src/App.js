@@ -24,6 +24,10 @@ const famille = {
     nom: "Hugo",
     age: 1,
   },
+  membre6: {
+    nom: "Nesquik",
+    age: 3,
+  },
 };
 
 class App extends Component {
@@ -66,6 +70,15 @@ class App extends Component {
     if (isShow) {
       description = <strong>Je suis un garçon. </strong>
     } 
+    // Object.keys permet de trasformer en tableu de clé
+    const liste = Object.keys(famille)
+    // pour boucler autour d'un tableau le plus simple est de faire un "map"
+    .map(membre => (
+      <Membre 
+      age={famille[membre].age} 
+      nom={famille[membre].nom} />
+    ))
+    console.log(liste);
 
     return (
       <div className="App">
@@ -75,21 +88,13 @@ class App extends Component {
           onChange={this.handleChange}
           type="text"
         />
-        <Membre age={famille.membre1.age} nom={famille.membre1.nom} />
-        <input
-          value={famille.membre2.nom}
-          onChange={this.handleChange2}
-          type="text"
-        />
-        <Membre age={famille.membre2.age} nom={famille.membre2.nom} />
-        <Membre age={famille.membre3.age} nom={famille.membre3.nom} />
-        <Membre age={famille.membre4.age} nom={famille.membre4.nom} />
-        <Membre age={famille.membre5.age} nom={famille.membre5.nom}>
+        { liste }
+        {/* {<Membre age={famille.membre5.age} nom={famille.membre5.nom}>
           { description }
           <button onClick={this.handleShowDescription}>
             {isShow ? "Cacher" : "Montrer"}
           </button>
-        </Membre>
+        </Membre>} */}
         <Button vieillir={() => this.handleClick(2)} />
       </div>
     );
