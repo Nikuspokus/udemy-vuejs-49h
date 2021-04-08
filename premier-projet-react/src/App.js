@@ -41,11 +41,11 @@ class App extends Component {
     famille.membre1.age += num;
     this.setState({ famille });
   };
-  handleChange = (event) => {
+  handleChange = (event, id) => {
     const famille = { ...this.state.famille };
     const nom = event.target.value;
     console.log(nom);
-    famille.membre1.nom = nom;
+    famille[id].nom = nom;
     this.setState({ famille });
   };
 
@@ -61,6 +61,12 @@ class App extends Component {
     this.setState({ isShow });
   };
 
+  cacherNom = id => {
+    const famille = { ...this.state.famille };
+    famille[id].nom = ' '
+    this.setState({ famille });
+  };
+
   render() {
     const { titre } = this.props;
     const { famille, isShow } = this.state;
@@ -71,10 +77,13 @@ class App extends Component {
       description = <strong>Je suis un garçon. </strong>
     } 
     // Object.keys permet de trasformer en tableu de clé
-    const liste = Object.keys(famille)
     // pour boucler autour d'un tableau le plus simple est de faire un "map"
+    const liste = Object.keys(famille)
     .map(membre => (
       <Membre 
+      key={membre}
+      handleChange={event => this.handleChange(event, membre)}
+      cacherNom={() => this.cacherNom(membre) }
       age={famille[membre].age} 
       nom={famille[membre].nom} />
     ))
@@ -83,11 +92,6 @@ class App extends Component {
     return (
       <div className="App">
         <h1>{titre}</h1>
-        <input
-          value={famille.membre1.nom}
-          onChange={this.handleChange}
-          type="text"
-        />
         { liste }
         {/* {<Membre age={famille.membre5.age} nom={famille.membre5.nom}>
           { description }
@@ -95,7 +99,7 @@ class App extends Component {
             {isShow ? "Cacher" : "Montrer"}
           </button>
         </Membre>} */}
-        <Button vieillir={() => this.handleClick(2)} />
+        {/* <Button vieillir={() => this.handleClick(2)} /> */}
       </div>
     );
   }
