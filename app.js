@@ -3,6 +3,8 @@ const app = Vue.createApp({
     return {
       counter: 0,
       name: '',
+      lastName: '',
+      // fullname:'',
     }
   },
   methods: {
@@ -14,21 +16,46 @@ const app = Vue.createApp({
     add(num) {
       this.counter = this.counter + num
     },
-    subtract(num) {
+    reduce(num) {
       this.counter = this.counter - num
     },
     resetInput() {
       this.name = ''
     }
   },
+  // WATCH ==> se met à jour automatique dès qu'il y a un changement
+  watch: {
+    counter(value) {
+      if (value > 50) {
+        const that = this
+        setTimeout(function () {
+          that.counter = 0;
+        }, 2000)
+      }
+    },
+    // name(value){
+    //   if (value === '') {
+    //     this.fullname = ''
+    //   } else {
+    //     this.fullname = value + ' ' + this.lastName
+    //   }
+    // },
+    // lastName(value){
+    //   if (value === '') {
+    //     this.fullname = ''
+    //   } else {
+    //     this.fullname = this.name + ' ' + value
+    //   }
+    // }
+  },
   computed: {
     fullname() {
       console.log('Running Again');
-      if (this.name === '') {
+      if (this.name === '' || this.lastName === '') {
         return ''
-      } else {
-        return this.name + ' ' + 'Marquillier'
-      }
+      } 
+        return this.name + ' ' + this.lastName
+      
     }
   },
 });
