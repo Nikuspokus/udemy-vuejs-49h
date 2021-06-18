@@ -1,9 +1,24 @@
 const app = Vue.createApp({
   data() {
     return {
-      courseGoal: 'Finish the course and learn Vue!!!!!!!!!!!!!!!!!!!!',
+      counter: 0,
+      name: '',
+    }
+  },
+  methods: {
+    setName(event, lastName) {
+      this.name = event.target.value + '' + lastName;
+    },
+    add(num) {
+      this.counter = this.counter + num
+    },
+    subtract(num) {
+      this.counter = this.counter - num
+    },
+    resetInput() {
+      this.name = ''
     }
   }
 });
 
-app.mount('#user-goal');
+app.mount('#events');
