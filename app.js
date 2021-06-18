@@ -1,9 +1,63 @@
 const app = Vue.createApp({
   data() {
     return {
-      courseGoal: 'Finish the course and learn Vue!',
+      counter: 0,
+      name: '',
+      lastName: '',
+      // fullname:'',
     }
-  }
+  },
+  methods: {
+    outputFullname() {
+    },
+    setName(event, lastName) {
+      this.name = event.target.value;
+    },
+    add(num) {
+      this.counter = this.counter + num
+    },
+    reduce(num) {
+      this.counter = this.counter - num
+    },
+    resetInput() {
+      this.name = ''
+    }
+  },
+  // WATCH ==> se met à jour automatique dès qu'il y a un changement
+  watch: {
+    counter(value) {
+      if (value > 50) {
+        const that = this
+        setTimeout(function () {
+          that.counter = 0;
+        }, 2000)
+      }
+    },
+    // name(value){
+    //   if (value === '') {
+    //     this.fullname = ''
+    //   } else {
+    //     this.fullname = value + ' ' + this.lastName
+    //   }
+    // },
+    // lastName(value){
+    //   if (value === '') {
+    //     this.fullname = ''
+    //   } else {
+    //     this.fullname = this.name + ' ' + value
+    //   }
+    // }
+  },
+  computed: {
+    fullname() {
+      console.log('Running Again');
+      if (this.name === '' || this.lastName === '') {
+        return ''
+      } 
+        return this.name + ' ' + this.lastName
+      
+    }
+  },
 });
 
-app.mount('#user-goal');
+app.mount('#events');
