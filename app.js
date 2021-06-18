@@ -6,8 +6,10 @@ const app = Vue.createApp({
     }
   },
   methods: {
+    outputFullname() {
+    },
     setName(event, lastName) {
-      this.name = event.target.value + '' + lastName;
+      this.name = event.target.value;
     },
     add(num) {
       this.counter = this.counter + num
@@ -18,7 +20,17 @@ const app = Vue.createApp({
     resetInput() {
       this.name = ''
     }
-  }
+  },
+  computed: {
+    fullname() {
+      console.log('Running Again');
+      if (this.name === '') {
+        return ''
+      } else {
+        return this.name + ' ' + 'Marquillier'
+      }
+    }
+  },
 });
 
 app.mount('#events');
