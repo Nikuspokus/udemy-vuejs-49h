@@ -10,7 +10,7 @@ const app = Vue.createApp({
   methods: {
     outputFullname() {
     },
-    setName(event, lastName) {
+    setName(event,) {
       this.name = event.target.value;
     },
     add(num) {
@@ -21,6 +21,7 @@ const app = Vue.createApp({
     },
     resetInput() {
       this.name = ''
+      this.lastName = ''
     }
   },
   // WATCH ==> se met à jour automatique dès qu'il y a un changement
@@ -50,9 +51,9 @@ const app = Vue.createApp({
   },
   computed: {
     fullname() {
-      console.log('Running Again');
+      console.log('Running Again...');
       if (this.name === '' || this.lastName === '') {
-        return ''
+        return ' '
       } 
         return this.name + ' ' + this.lastName
       
